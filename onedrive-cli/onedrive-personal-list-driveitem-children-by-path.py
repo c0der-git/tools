@@ -1,5 +1,9 @@
 # OneDrive Personal files access with interactive authentification,
 # using authority "https://login.microsoftonline.com/common/oauth2/v2.0/authorize"
+# *****************************************************************
+
+# List children of a DriveItem with a known path
+# from https://learn.microsoft.com/en-us/graph/api/driveitem-list-children?view=graph-rest-1.0&tabs=http#list-children-of-a-driveitem-with-a-known-path
 
 import os
 import requests
@@ -9,7 +13,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Set the API endpoint and parameters
-endpoint = "https://graph.microsoft.com/v1.0/me/drive/root/children"
+path = os.getenv('PERS_PATH')
+
+#endpoint = "https://graph.microsoft.com/v1.0/me/drive/root/children" #To list OneDrive root folder content
+endpoint = f"https://graph.microsoft.com/v1.0/me/drive/root:/{path}:/children" #To list OneDrive folder path
+
+
+
 params = {
     "select": "id,name,createdDateTime,lastModifiedDateTime,size,file",
     "orderby": "name"
@@ -50,6 +60,6 @@ headers = {"Authorization": f"Bearer {access_token}"}
 response = requests.get(endpoint, headers=headers, params=params)
 
 # Print the results
-print("Files:")
+print(f"Files in {path}:")
 for item in json.loads(response.text)["value"]:
     print(f"- {item['name'], item['id']}")
