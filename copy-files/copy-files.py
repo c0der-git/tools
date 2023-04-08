@@ -1,3 +1,5 @@
+# Files copy from <source_folder> to <destination_folder>. Possible args: ["all", "lastmonth"]
+
 import os
 import shutil
 import datetime
