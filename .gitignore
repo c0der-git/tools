@@ -2,6 +2,4 @@ __pycache__/
 *.py[cod]
 .DS_Store/
 .DS_Store
-.env
-.venv-onedrive-cli
-example.py
+
