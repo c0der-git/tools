@@ -8,9 +8,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Set the required variables
-client_id = os.getenv('CLIENT_ID')
-tenant_id = os.getenv('TENANT_ID')
-redirect_uri = os.getenv('REDIRECT_URI')
+client_id = os.getenv('BSNS_CLIENT_ID')
+tenant_id = os.getenv('BSNS_TENANT_ID')
+redirect_uri = os.getenv('BSNS_REDIRECT_URI')
 scopes = ['https://graph.microsoft.com/.default']
 
 # Set up the authentication using MSAL

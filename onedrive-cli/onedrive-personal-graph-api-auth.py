@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 URL = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize'
-client_id = os.getenv('CLIENT_ID')
+client_id = os.getenv('PERS_CLIENT_ID')
 permissions = ['files.read']
 response_type = 'token'
 redirect_uri = 'http://localhost:8080/'
@@ -26,7 +26,8 @@ for items in range(len(permissions)):
 print('Click over this link ' +URL + '?client_id=' + client_id + '&scope=' + scope + '&response_type=' + response_type+\
      '&redirect_uri=' + urllib.parse.quote(redirect_uri))
 print('Sign in to your account, copy the whole redirected URL.')
-code = input("Paste the URL here :")
+#code = input("Paste the URL here :")
+code = os.getenv('PERS_CODE')
 token = code[(code.find('access_token') + len('access_token') + 1) : (code.find('&token_type'))]
 URL = 'https://graph.microsoft.com/v1.0/'
 HEADERS = {'Authorization': 'Bearer ' + token}
